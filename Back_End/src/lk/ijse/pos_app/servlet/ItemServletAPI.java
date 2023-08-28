@@ -17,7 +17,7 @@ public class ItemServletAPI extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM item");
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -61,7 +61,7 @@ public class ItemServletAPI extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             PreparedStatement pstm = connection.prepareStatement("INSERT INTO item VALUES (?,?,?,?)");
             pstm.setObject(1,itemDTO.getCode());
@@ -96,7 +96,7 @@ public class ItemServletAPI extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             ItemDTO itemDTO = new ItemDTO(code,name,qty,price);
 
@@ -129,7 +129,7 @@ public class ItemServletAPI extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             PreparedStatement pst = connection.prepareStatement("DELETE FROM item WHERE code=?");
             pst.setObject(1,code);

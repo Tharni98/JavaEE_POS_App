@@ -18,7 +18,7 @@ public class PurchaseOrderServletAPI extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             PreparedStatement pstm = connection.prepareStatement("SELECT code FROM item");
             ResultSet resultSet = pstm.executeQuery();
@@ -70,7 +70,7 @@ public class PurchaseOrderServletAPI extends HttpServlet {
         String id = jsonObject.getString("id");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             CustomerDTO customerDTO = new CustomerDTO();
             customerDTO.setId(id);
@@ -111,7 +111,7 @@ public class PurchaseOrderServletAPI extends HttpServlet {
         String code = jsonObject.getString("code");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/| company", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             ItemDTO itemDTO = new ItemDTO();
             itemDTO.setCode(code);
