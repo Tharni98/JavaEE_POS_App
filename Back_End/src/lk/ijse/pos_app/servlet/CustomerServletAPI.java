@@ -110,7 +110,7 @@ public class CustomerServletAPI extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
-            PreparedStatement pstm = connection.prepareStatement("update customer set name=?,address=?,salary=? where id=?");
+            PreparedStatement pstm = connection.prepareStatement("update customer set cusName=?,cusAddress=?,salary=? where cusID=?");
             pstm.setObject(4,customerDTO.getId());
             pstm.setObject(1,customerDTO.getName());
             pstm.setObject(2,customerDTO.getAddress());
@@ -132,11 +132,12 @@ public class CustomerServletAPI extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin","*");
+        resp.addHeader("Content-Type", "application/json");
 
-        JsonReader reader = Json.createReader(req.getReader());
-        JsonObject jsonObject = reader.readObject();
+//        JsonReader reader = Json.createReader(req.getReader());
+//        JsonObject jsonObject = reader.readObject();
 
-        String id = jsonObject.getString("id");
+        String id = req.getParameter("cusID");
 
         System.out.println(id);
         try {
@@ -144,7 +145,7 @@ public class CustomerServletAPI extends HttpServlet {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
 
-            PreparedStatement pstm = connection.prepareStatement("delete from customer where id=?");
+            PreparedStatement pstm = connection.prepareStatement("delete from customer where cusID=?");
             pstm.setObject(1, id);
             if (pstm.executeUpdate() > 0) {
 

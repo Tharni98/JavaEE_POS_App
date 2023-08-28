@@ -94,13 +94,14 @@ public class ItemServletAPI extends HttpServlet {
 
         resp.addHeader("Access-Control-Allow-Origin","*");
 
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
 
             ItemDTO itemDTO = new ItemDTO(code,name,qty,price);
 
-            PreparedStatement pstm = connection.prepareStatement("UPDATE item SET name=?, qty=?, price=? WHERE code=?");
+            PreparedStatement pstm = connection.prepareStatement("UPDATE item SET description=?, qty=?, itemPrice=? WHERE code=?");
             pstm.setObject(4,itemDTO.getCode());
             pstm.setObject(1,itemDTO.getName());
             pstm.setObject(2,itemDTO.getQty());
@@ -152,6 +153,7 @@ public class ItemServletAPI extends HttpServlet {
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin","*");
         resp.addHeader("Access-Control-Allow-Methods","PUT,DELETE");
-        resp.addHeader("Access-Control-Allow-Headers","content-type");
+        resp.addHeader("Access-Control-Allow-Headers","Content-Type");
+
     }
 }
